@@ -11,7 +11,7 @@ define(function (require) {
   require('elasticsearch');
   require('angular-route');
   require('angular-bindonce');
-  
+
   require('restangular');
 
   var configFile = JSON.parse(require('text!config'));
@@ -51,13 +51,24 @@ define(function (require) {
       });
       RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
          // TODO: standardized error handling - right now we soft fail errors to empty data
-      
+
          // Redirect API login failure response to login page
+         if (data && data.status === 'success') {
+            if (data.token) {
+               localStorage.setItem('token', data.token);
+            }
+         }
          if (data.status !== 'success' && data.message && data.message.match(/you must be logged in/gi)) {
             location.href = '/login.php';
          }
-      
+
          return data && data.status === 'success' ? data.data : {error: true, message: data.message};
+      });
+      RestangularProvider.addFullRequestInterceptor(function() {
+         const config = { headers: {} };
+         if (localStorage.getItem('token'))
+            config.headers['Authorization'] = localStorage.getItem('token') || '';
+         return config;
       });
    })
     .config(['ngClipProvider', function (ngClipProvider) {
