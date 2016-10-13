@@ -4,6 +4,7 @@
 
 import json
 import time
+import argparse
 from elasticsearch import Elasticsearch
 from os import listdir
 from os.path import isfile, join, splitext
@@ -62,6 +63,17 @@ def es_version_is_outdated(es_index, es_type, es_id, full_file_path):
     version_of_es_file = UTIL.safe_list_read(es_file_source, 'version')
     return version_of_disk_file > version_of_es_file, version_of_disk_file, version_of_es_file
 
+def print_error_and_usage(arg_parser, error):
+   print "Error:  " + error + "\n"
+   print arg_parser.print_help()
+   sys.exit(2)
+
+def santize_input_args(arg_parser, args):
+   if len(sys.argv) == 1:
+      print_error_and_usage(arg_parser, "No arguments supplied.")
+   if (args.prof_dir is None):
+      print_error_and_usage(arg_parser, "Must have the following flag: -p (--profiledir)")
+
 def load_assets(es_index, es_type, path_to_files, files):
     for file in files:
         logging.info("--------- " + file + " ---------")
@@ -91,6 +103,14 @@ def load_assets(es_index, es_type, path_to_files, files):
 
 # ----------------- MAIN -----------------
 def main():
+    argParser = argparse.ArgumentParser(description="Load a custom tagging Profile Dashboard and all of it's assets.")
+    argParser.add_argument("-p", "--profiledir", dest="prof_dir", metavar="PROFILE_DIR", help="Profile directory path containing assets to load into ES")
+   
+    args = argParser.parse_args()
+
+    santize_input_args(arg_parser=argParser, args=args)
+    global resources
+    resources = args.prof_dir
 
     # Create arrays of the filenames in each of the resource dirs
     dashboards = [filename for filename in listdir(dashboards_path) if isfile(join(dashboards_path, filename))]
