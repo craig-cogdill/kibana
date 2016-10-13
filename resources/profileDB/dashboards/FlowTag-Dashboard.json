@@ -1,0 +1,11 @@
+{
+   "hits": 0, 
+   "timeRestore": false, 
+   "description": "", 
+   "title": "FlowTag Dashboard", 
+   "panelsJSON": "[{\"id\":\"Profile-Image\",\"type\":\"visualization\",\"size_x\":4,\"size_y\":5,\"col\":1,\"row\":1},{\"id\":\"Total-Bandwidth-Used-By-Profile\",\"type\":\"visualization\",\"size_x\":4,\"size_y\":2,\"col\":5,\"row\":1},{\"id\":\"Bandwidth-Used-By-FlowTag\",\"type\":\"visualization\",\"size_x\":4,\"size_y\":3,\"col\":5,\"row\":3},{\"id\":\"Top-Applications-By-Bandwidth-By-FlowTag\",\"type\":\"visualization\",\"size_x\":4,\"size_y\":5,\"col\":9,\"row\":1},{\"id\":\"Bandwidth-Used-Per-FlowTag-Over-Time\",\"type\":\"visualization\",\"size_x\":6,\"size_y\":5,\"col\":1,\"row\":6},{\"id\":\"Top-10-Applications-By-Bandwidth-Used-By-Profile\",\"type\":\"visualization\",\"size_x\":6,\"size_y\":5,\"col\":7,\"row\":6},{\"id\":\"Alarms-Table-By-FlowTag\",\"type\":\"search\",\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":11,\"columns\":[\"FlowTag\",\"RuleName\",\"RuleSeverity\",\"Application\",\"Session\",\"SrcIP\",\"DestIP\",\"TotalBytes\"],\"sort\":[\"TimeUpdated\",\"desc\"]}]", 
+   "version": 1, 
+   "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"_exists_:FlowTag\"}}}]}"
+   }
+}

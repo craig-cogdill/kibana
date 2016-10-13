@@ -1,0 +1,9 @@
+{
+   "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"TotalBytesDelta\"}}],\"listeners\":{}}", 
+   "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"[network_]YYYY_MM_DD\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+   }, 
+   "version": 1, 
+   "description": "", 
+   "title": "Total Bandwidth Used By Profile"
+}
