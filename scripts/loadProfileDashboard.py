@@ -16,7 +16,7 @@ logger = Logger()
 logging, rotating_handler = logger.configure_and_return_logging()
 UTIL = Utility()
 
-resources = "/usr/local/kibana-" + esUtil.KIBANA_VERSION + "-linux-x64/resources"
+resources = "/usr/local/kibana-" + esUtil.KIBANA_VERSION + "-linux-x64/resources/profileDB"
 dashboards_path = resources + "/dashboards" 
 visualizations_path = resources + "/visualizations" 
 searches_path = resources + "/searches" 
