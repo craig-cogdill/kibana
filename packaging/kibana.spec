@@ -64,3 +64,4 @@ fi
 /usr/local/www/probe
 /usr/local/%{name}-%{kibana_version}-linux-x64
 %attr(0644,root,root) /lib/systemd/system/kibana.service
+%attr(0644,dpi,nobody) /usr/local/%{name}-%{kibana_version}-linux-x64/resources/profileDB
