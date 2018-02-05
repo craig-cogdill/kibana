@@ -4,14 +4,16 @@ import sys
 import argparse
 import json
 from util import ElasticsearchUtil
-from util import Logger
+from util import LogConfig
 from util import Utility
 
 EXPORT_LOG = "/tmp/ExportAssets.log"
 
 esUtil = ElasticsearchUtil(EXPORT_LOG)
-logger = Logger(log_file=EXPORT_LOG)
-logging, rotating_handler = logger.configure_and_return_logging()
+logConfig = LogConfig(log_file=EXPORT_LOG)
+logging, rotating_handler = logConfig.configure_and_return_logging()
+logger = logging.getLogger()
+logger.addHandler(rotating_handler)
 UTIL = Utility(log_file=EXPORT_LOG)
 
 OUTPUT_DIR = os.path.dirname(os.path.realpath(__file__)) 
